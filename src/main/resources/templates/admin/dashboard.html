@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Admin Dashboard')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="main-content" style="margin-left:0;">
+        <h2 class="mb-4"><i class="fas fa-shield-alt me-2"></i>Admin Dashboard</h2>
+        <div class="card p-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+            <h4>Welcome, Admin!</h4>
+            <p class="text-muted">You have full access to the LearnSphere Platform.</p>
+            <p>Use the H2 Console at <a href="/h2-console">/h2-console</a> to manage the database directly.</p>
+        </div>
+    </div>
+</body></html>

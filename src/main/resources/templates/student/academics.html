@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Academic Results')}"></head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex">
+        <div th:replace="~{fragments/layout :: sidebar-student}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-chart-bar me-2"></i>Academic Results</h2>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="stat-card text-center"><h6>GPA (Current Sem)</h6><h2 class="text-info" th:text="${gpa}"></h2></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card text-center"><h6>CGPA (Overall)</h6><h2 class="text-success" th:text="${cgpa}"></h2></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card text-center"><h6>Semester</h6><h2 th:text="${student.semester}"></h2></div>
+                </div>
+            </div>
+            <div class="card p-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                <h4 class="mb-3">Semester Results</h4>
+                <div class="table-responsive">
+                    <table class="table table-dark" style="border-radius:10px;overflow:hidden;">
+                        <thead style="background:#0f3460;"><tr><th>Subject</th><th>Code</th><th>Internal (40)</th><th>External (60)</th><th>Total (100)</th><th>Grade</th><th>Grade Point</th><th>Credits</th></tr></thead>
+                        <tbody>
+                            <tr th:each="r : ${results}">
+                                <td th:text="${r.subject.subjectName}"></td>
+                                <td th:text="${r.subject.subjectCode}"></td>
+                                <td th:text="${r.internalMarks}"></td>
+                                <td th:text="${r.externalMarks}"></td>
+                                <td class="fw-bold" th:text="${r.totalMarks}"></td>
+                                <td><span class="badge" th:classappend="${r.grade == 'O' || r.grade == 'A+' ? 'bg-success' : (r.grade == 'F' ? 'bg-danger' : 'bg-info')}" th:text="${r.grade}"></span></td>
+                                <td th:text="${r.gradePoint}"></td>
+                                <td th:text="${r.subject.credits}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Manage Videos')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-video me-2"></i>Videos - <span th:text="${course.title}"></span></h2>
+            <div class="card p-4 mb-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                <h5>Add New Video</h5>
+                <form th:action="@{'/faculty/courses/' + ${course.id} + '/videos/add'}" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label class="text-muted">Title</label><input type="text" name="title" class="form-control bg-dark text-white border-secondary" required></div>
+                        <div class="col-md-3 mb-3"><label class="text-muted">YouTube Embed URL</label><input type="text" name="youtubeUrl" class="form-control bg-dark text-white border-secondary" placeholder="https://www.youtube.com/embed/..." required></div>
+                        <div class="col-md-3 mb-3"><label class="text-muted">Order</label><input type="number" name="orderIndex" class="form-control bg-dark text-white border-secondary" value="1"></div>
+                        <div class="col-12 mb-3"><label class="text-muted">Description</label><input type="text" name="description" class="form-control bg-dark text-white border-secondary"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus me-1"></i>Add Video</button>
+                </form></div>
+            <div th:each="v : ${videos}" class="card p-3 mb-2" style="background:#16213e;border:1px solid rgba(102,126,234,0.1);border-radius:10px;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-play-circle me-2 text-info"></i>#<span th:text="${v.orderIndex}"></span> - <span th:text="${v.title}"></span></span>
+                </div></div>
+            <a th:href="@{/faculty/courses}" class="btn btn-outline-primary mt-3"><i class="fas fa-arrow-left me-1"></i>Back</a>
+        </div></div>
+</body></html>

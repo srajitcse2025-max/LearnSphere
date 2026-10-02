@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Quizzes')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-question-circle me-2"></i>Quizzes - <span th:text="${course.title}"></span></h2>
+            <div class="card p-4 mb-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                <h5>Create New Quiz</h5>
+                <form th:action="@{'/faculty/quizzes/' + ${course.id} + '/create'}" method="post" class="row">
+                    <div class="col-md-4 mb-3"><label class="text-muted">Title</label><input type="text" name="title" class="form-control bg-dark text-white border-secondary" required></div>
+                    <div class="col-md-4 mb-3"><label class="text-muted">Topic</label><input type="text" name="topic" class="form-control bg-dark text-white border-secondary" required></div>
+                    <div class="col-md-2 mb-3"><label class="text-muted">Duration (min)</label><input type="number" name="durationMinutes" class="form-control bg-dark text-white border-secondary" value="15"></div>
+                    <div class="col-md-2 mb-3 d-flex align-items-end"><button type="submit" class="btn btn-primary w-100"><i class="fas fa-plus me-1"></i>Create</button></div>
+                </form></div>
+            <div th:each="q : ${quizzes}" class="card p-3 mb-2" style="background:#16213e;border:1px solid rgba(102,126,234,0.1);border-radius:10px;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div><h5 class="mb-0" th:text="${q.title}"></h5><small class="text-muted" th:text="'Topic: ' + ${q.topic}"></small></div>
+                    <a th:href="@{'/faculty/quizzes/' + ${q.id} + '/questions'}" class="btn btn-sm btn-outline-info"><i class="fas fa-list me-1"></i>Manage Questions</a>
+                </div></div>
+            <a th:href="@{/faculty/courses}" class="btn btn-outline-primary mt-3"><i class="fas fa-arrow-left me-1"></i>Back</a>
+        </div></div>
+</body></html>

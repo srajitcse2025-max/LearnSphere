@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('New Course')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-plus-circle me-2"></i>Create New Course</h2>
+            <div class="card p-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                <form th:action="@{/faculty/courses/save}" method="post">
+                    <div class="mb-3"><label class="text-muted">Course Title</label><input type="text" name="title" class="form-control bg-dark text-white border-secondary" required></div>
+                    <div class="mb-3"><label class="text-muted">Description</label><textarea name="description" class="form-control bg-dark text-white border-secondary" rows="3"></textarea></div>
+                    <div class="row"><div class="col-md-6 mb-3"><label class="text-muted">Course Code</label><input type="text" name="courseCode" class="form-control bg-dark text-white border-secondary" required></div>
+                    <div class="col-md-6 mb-3"><label class="text-muted">Department</label><input type="text" name="department" class="form-control bg-dark text-white border-secondary" value="CSE"></div></div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i>Save Course</button>
+                    <a th:href="@{/faculty/courses}" class="btn btn-outline-secondary ms-2">Cancel</a>
+                </form></div></div></div>
+</body></html>

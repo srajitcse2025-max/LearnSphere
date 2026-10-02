@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Manage Questions')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-list me-2"></i>Questions - <span th:text="${quiz.title}"></span></h2>
+            <div class="card p-4 mb-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                <h5>Add Question</h5>
+                <form th:action="@{'/faculty/quizzes/' + ${quiz.id} + '/questions/add'}" method="post">
+                    <div class="mb-3"><label class="text-muted">Question</label><textarea name="questionText" class="form-control bg-dark text-white border-secondary" rows="2" required></textarea></div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2"><label class="text-muted">Option A</label><input type="text" name="optionA" class="form-control bg-dark text-white border-secondary" required></div>
+                        <div class="col-md-6 mb-2"><label class="text-muted">Option B</label><input type="text" name="optionB" class="form-control bg-dark text-white border-secondary" required></div>
+                        <div class="col-md-6 mb-2"><label class="text-muted">Option C</label><input type="text" name="optionC" class="form-control bg-dark text-white border-secondary" required></div>
+                        <div class="col-md-6 mb-2"><label class="text-muted">Option D</label><input type="text" name="optionD" class="form-control bg-dark text-white border-secondary" required></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 mb-3"><label class="text-muted">Correct Answer</label>
+                            <select name="correctAnswer" class="form-select bg-dark text-white border-secondary"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+                        <div class="col-md-8 mb-3"><label class="text-muted">Explanation</label><input type="text" name="explanation" class="form-control bg-dark text-white border-secondary"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus me-1"></i>Add Question</button>
+                </form></div>
+            <div th:each="q,i : ${questions}" class="card p-3 mb-2" style="background:#16213e;border:1px solid rgba(102,126,234,0.1);border-radius:10px;">
+                <h6><span th:text="'Q' + ${i.count} + '. '"></span><span th:text="${q.questionText}"></span></h6>
+                <small class="text-muted">A: <span th:text="${q.optionA}"></span> | B: <span th:text="${q.optionB}"></span> | C: <span th:text="${q.optionC}"></span> | D: <span th:text="${q.optionD}"></span></small>
+                <small class="text-success d-block">Correct: <span th:text="${q.correctAnswer}"></span></small>
+            </div>
+        </div></div>
+</body></html>

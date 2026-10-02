@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Performance')}"></head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex">
+        <div th:replace="~{fragments/layout :: sidebar-student}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-trophy me-2"></i>My Performance</h2>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card p-4" style="background:#16213e;border-radius:15px;border:1px solid rgba(102,126,234,0.2);">
+                        <h5>CGPA: <span class="text-success" th:text="${cgpa}"></span></h5>
+                        <h6 class="mt-3">Improvement Tips:</h6>
+                        <ul class="text-muted">
+                            <li th:if="${cgpa < 7}">Focus on subjects where you scored below 60 marks</li>
+                            <li th:if="${cgpa < 8}">Practice more MCQs to strengthen fundamentals</li>
+                            <li>Review quiz answers and explanations carefully</li>
+                            <li>Maintain consistent study schedule for all subjects</li>
+                            <li>Watch course videos multiple times for difficult topics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4" style="background:#16213e;border-radius:15px;border:1px solid rgba(102,126,234,0.2);">
+                        <h5>Quiz Performance</h5>
+                        <div th:each="a : ${attempts}" class="mb-2">
+                            <div class="d-flex justify-content-between"><span th:text="${a.quiz.title}"></span><span th:text="${#numbers.formatDecimal(a.percentage,1,1) + '%'}"></span></div>
+                            <div class="progress" style="height:8px;background:#1a1a2e;">
+                                <div class="progress-bar" th:classappend="${a.percentage >= 60 ? 'bg-success' : 'bg-danger'}" th:style="'width:' + ${a.percentage} + '%'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-4" style="background:#16213e;border-radius:15px;border:1px solid rgba(102,126,234,0.2);">
+                <h5>Subject-wise Marks</h5>
+                <canvas id="marksChart" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        var labels = [];
+        var internal = [];
+        var external = [];
+        /*[# th:each="r : ${results}"]*/
+        labels.push(/*[[${r.subject.subjectCode}]]*/ '');
+        internal.push(/*[[${r.internalMarks}]]*/ 0);
+        external.push(/*[[${r.externalMarks}]]*/ 0);
+        /*[/]*/
+        if (labels.length > 0) {
+            new Chart(document.getElementById('marksChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'Internal (out of 40)', data: internal, backgroundColor: '#667eea', borderRadius: 5 },
+                        { label: 'External (out of 60)', data: external, backgroundColor: '#764ba2', borderRadius: 5 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, max: 60, ticks: { color: '#aaa' }, grid: { color: 'rgba(102,126,234,0.1)' } },
+                        x: { ticks: { color: '#aaa' }, grid: { color: 'rgba(102,126,234,0.1)' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ccc' } } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

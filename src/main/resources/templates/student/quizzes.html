@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Quizzes')}"></head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex">
+        <div th:replace="~{fragments/layout :: sidebar-student}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-question-circle me-2"></i>Available Quizzes</h2>
+            <div class="row">
+                <div th:each="quiz : ${quizzes}" class="col-md-4 mb-4">
+                    <div class="card p-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                        <h5 th:text="${quiz.title}"></h5>
+                        <p class="text-muted"><i class="fas fa-tag me-1"></i>Topic: <span th:text="${quiz.topic}"></span></p>
+                        <p class="text-muted"><i class="fas fa-clock me-1"></i><span th:text="${quiz.durationMinutes}"></span> minutes</p>
+                        <p class="text-muted"><i class="fas fa-book me-1"></i><span th:text="${quiz.course.title}"></span></p>
+                        <a th:href="@{'/student/quizzes/' + ${quiz.id} + '/take'}" class="btn btn-primary"><i class="fas fa-play me-1"></i>Take Quiz</a>
+                    </div>
+                </div>
+            </div>
+            <h3 class="mt-4 mb-3">Previous Attempts</h3>
+            <div class="table-responsive">
+                <table class="table table-dark" style="border-radius:10px;overflow:hidden;">
+                    <thead style="background:#0f3460;"><tr><th>Quiz</th><th>Score</th><th>Percentage</th><th>Date</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr th:each="attempt : ${attempts}">
+                            <td th:text="${attempt.quiz.title}"></td>
+                            <td th:text="${attempt.score + '/' + attempt.totalQuestions}"></td>
+                            <td><span th:text="${#numbers.formatDecimal(attempt.percentage,1,1) + '%'}"></span></td>
+                            <td th:text="${#temporals.format(attempt.attemptDate, 'dd MMM yyyy HH:mm')}"></td>
+                            <td><a th:href="@{'/student/quizzes/' + ${attempt.id} + '/result'}" class="btn btn-sm btn-outline-info">Review</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

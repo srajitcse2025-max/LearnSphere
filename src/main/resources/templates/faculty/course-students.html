@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Course Students')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-users me-2"></i>Enrolled Students - <span th:text="${course.title}"></span></h2>
+            <div class="table-responsive">
+                <table class="table table-dark" style="border-radius:10px;overflow:hidden;">
+                    <thead style="background:#0f3460;"><tr><th>#</th><th>Name</th><th>Reg. No</th><th>Department</th><th>Section</th><th>Progress</th></tr></thead>
+                    <tbody>
+                        <tr th:each="e,i : ${enrollments}">
+                            <td th:text="${i.count}"></td><td th:text="${e.student.user.fullName}"></td>
+                            <td th:text="${e.student.registerNumber}"></td><td th:text="${e.student.department}"></td>
+                            <td th:text="${e.student.section}"></td>
+                            <td><div class="progress" style="height:8px;background:#1a1a2e;"><div class="progress-bar bg-success" th:style="'width:' + ${e.progress} + '%'"></div></div><small th:text="${e.progress + '%'}"></small></td>
+                        </tr></tbody></table></div>
+            <a th:href="@{/faculty/courses}" class="btn btn-outline-primary"><i class="fas fa-arrow-left me-1"></i>Back</a>
+        </div></div>
+</body></html>

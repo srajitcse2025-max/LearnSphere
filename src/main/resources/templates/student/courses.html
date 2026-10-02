@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Courses')}"></head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex">
+        <div th:replace="~{fragments/layout :: sidebar-student}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-book me-2"></i>Available Courses</h2>
+            <div class="row">
+                <div th:each="course : ${allCourses}" class="col-md-4 mb-4">
+                    <div class="card h-100" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;overflow:hidden;">
+                        <div class="p-3" style="background:linear-gradient(135deg,#667eea,#764ba2);"><h5 class="mb-0 text-white" th:text="${course.title}"></h5></div>
+                        <div class="card-body">
+                            <p class="text-muted small" th:text="${course.description}"></p>
+                            <p><i class="fas fa-code me-1"></i> <span th:text="${course.courseCode}"></span></p>
+                            <p><i class="fas fa-chalkboard-teacher me-1"></i> <span th:text="${course.faculty.user.fullName}"></span></p>
+                        </div>
+                        <div class="card-footer" style="background:transparent;border-top:1px solid rgba(102,126,234,0.2);">
+                            <form th:action="@{'/student/courses/enroll/' + ${course.id}}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-outline-primary"><i class="fas fa-plus me-1"></i>Enroll</button>
+                            </form>
+                            <a th:href="@{'/student/courses/' + ${course.id} + '/videos'}" class="btn btn-sm btn-outline-info"><i class="fas fa-play me-1"></i>Videos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

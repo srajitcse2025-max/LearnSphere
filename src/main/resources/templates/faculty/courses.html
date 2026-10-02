@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('My Courses')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <div class="d-flex justify-content-between mb-4"><h2><i class="fas fa-book me-2"></i>My Courses</h2>
+                <a th:href="@{/faculty/courses/new}" class="btn btn-primary"><i class="fas fa-plus me-1"></i>New Course</a></div>
+            <div class="row">
+                <div th:each="c : ${courses}" class="col-md-4 mb-4">
+                    <div class="card h-100" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;overflow:hidden;">
+                        <div class="p-3" style="background:linear-gradient(135deg,#667eea,#764ba2);"><h5 class="mb-0 text-white" th:text="${c.title}"></h5></div>
+                        <div class="card-body">
+                            <p class="text-muted small" th:text="${c.description}"></p>
+                            <p><i class="fas fa-code me-1"></i><span th:text="${c.courseCode}"></span></p></div>
+                        <div class="card-footer" style="background:transparent;border-top:1px solid rgba(102,126,234,0.2);">
+                            <a th:href="@{'/faculty/courses/' + ${c.id} + '/videos'}" class="btn btn-sm btn-outline-info me-1"><i class="fas fa-video"></i> Videos</a>
+                            <a th:href="@{'/faculty/courses/' + ${c.id} + '/students'}" class="btn btn-sm btn-outline-success me-1"><i class="fas fa-users"></i> Students</a>
+                            <a th:href="@{'/faculty/quizzes/' + ${c.id}}" class="btn btn-sm btn-outline-warning"><i class="fas fa-question"></i> Quizzes</a>
+                        </div></div></div></div>
+        </div></div>
+</body></html>

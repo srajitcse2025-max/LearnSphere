@@ -1,0 +1,180 @@
+* { font-family: 'Poppins', sans-serif; }
+
+/* ============================================
+   GLOBAL DARK THEME - NO BLACK TEXT ANYWHERE
+   ============================================ */
+
+/* Base - force everything light */
+body, html { background: #1a1a2e; color: #e0e0e0 !important; margin: 0; }
+*, *::before, *::after { color: inherit; }
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 { color: #ffffff !important; }
+
+/* All text elements */
+p, span, label, small, li, td, th, div, blockquote, figcaption, 
+caption, legend, address, summary, details, pre, code { 
+    color: #d0d0e0; 
+}
+
+/* Links */
+a { color: #7e9aff; }
+a:hover { color: #a0b8ff; }
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+    width: 240px; min-height: 100vh; background: #0f3460;
+    padding: 1.5rem 0; position: sticky; top: 0;
+}
+.sidebar-link {
+    display: block; padding: 12px 24px; color: #a0b4d0 !important;
+    text-decoration: none; transition: all 0.3s;
+}
+.sidebar-link:hover { background: rgba(102,126,234,0.2); color: white !important; padding-left: 30px; }
+.sidebar-link i { width: 24px; margin-right: 10px; color: inherit !important; }
+
+.main-content { flex: 1; padding: 2rem; margin-left: 0; }
+
+/* ============================================
+   STAT CARDS
+   ============================================ */
+.stat-card {
+    background: #16213e; border: 1px solid rgba(102,126,234,0.2);
+    border-radius: 15px; padding: 1.5rem; text-align: center;
+    transition: transform 0.3s;
+}
+.stat-card:hover { transform: translateY(-5px); }
+.stat-card h6 { color: #a0a0b0 !important; margin-bottom: 0.5rem; }
+.stat-card h3, .stat-card h2 { color: white !important; margin: 0; }
+.stat-icon {
+    width: 50px; height: 50px; border-radius: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem; font-size: 1.3rem; color: white !important;
+}
+
+/* ============================================
+   TABLES - force all text light
+   ============================================ */
+table, .table { color: #d0d0e0 !important; }
+.table td, .table th { color: #d0d0e0 !important; border-color: rgba(102,126,234,0.1) !important; }
+.table thead th { color: #ffffff !important; }
+.table-dark { background: #16213e !important; color: #d0d0e0 !important; }
+.table-dark td, .table-dark th { color: #d0d0e0 !important; border-color: rgba(102,126,234,0.1) !important; }
+.table-dark thead th { color: #ffffff !important; }
+.table-borderless td, .table-borderless th { color: #d0d0e0 !important; }
+tbody, thead, tfoot, tr { color: #d0d0e0 !important; }
+
+/* ============================================
+   CARDS - no dark text
+   ============================================ */
+.card { color: #d0d0e0 !important; background: transparent; }
+.card-body { color: #d0d0e0 !important; }
+.card-body * { color: #d0d0e0; }
+.card-body h1, .card-body h2, .card-body h3, .card-body h4, .card-body h5, .card-body h6 { color: #ffffff !important; }
+.card-footer { color: #c0c0d0 !important; }
+.card h5, .card h4, .card h3 { color: #ffffff !important; }
+
+/* ============================================
+   FORMS - all inputs light text
+   ============================================ */
+.form-control, .form-select, input, textarea, select {
+    background: #1a1a2e !important; color: #e0e0e0 !important;
+    border: 1px solid rgba(102,126,234,0.3) !important;
+    border-radius: 10px;
+}
+.form-control:focus, .form-select:focus, input:focus, textarea:focus, select:focus {
+    background: #1a1a2e !important; color: #e0e0e0 !important;
+    border-color: #667eea !important; box-shadow: 0 0 10px rgba(102,126,234,0.3) !important;
+}
+.form-control::placeholder, input::placeholder, textarea::placeholder { color: #8888a8 !important; opacity: 1 !important; }
+.form-select option, select option { background: #1a1a2e !important; color: #e0e0e0 !important; }
+label { color: #b0b0c0 !important; }
+
+/* Radio & Checkbox */
+.form-check-label { color: #e0e0e0 !important; }
+.form-check-input { background-color: #1a1a2e !important; border-color: rgba(102,126,234,0.4) !important; }
+.form-check-input:checked { background-color: #667eea !important; border-color: #667eea !important; }
+
+/* ============================================
+   ALERTS
+   ============================================ */
+.alert { color: #ffffff !important; }
+.alert * { color: inherit !important; }
+.alert-danger { background: rgba(220,53,69,0.2) !important; border-color: rgba(220,53,69,0.4) !important; color: #ff8a8a !important; }
+.alert-success { background: rgba(40,167,69,0.2) !important; border-color: rgba(40,167,69,0.4) !important; color: #7dff9e !important; }
+.alert-info { background: rgba(23,162,184,0.2) !important; border-color: rgba(23,162,184,0.4) !important; color: #7de4ff !important; }
+.alert-warning { background: rgba(255,193,7,0.2) !important; border-color: rgba(255,193,7,0.4) !important; color: #ffe07d !important; }
+
+/* ============================================
+   BOOTSTRAP TEXT OVERRIDES (kill all dark text)
+   ============================================ */
+.text-muted { color: #9595b0 !important; }
+.text-dark { color: #d0d0e0 !important; }
+.text-body { color: #d0d0e0 !important; }
+.text-black { color: #d0d0e0 !important; }
+.text-black-50 { color: #9595b0 !important; }
+.text-body-secondary { color: #9595b0 !important; }
+.text-body-tertiary { color: #8080a0 !important; }
+.text-white { color: #ffffff !important; }
+.text-light { color: #d0d0e0 !important; }
+.text-info { color: #7de4ff !important; }
+.text-success { color: #7dff9e !important; }
+.text-danger { color: #ff8a8a !important; }
+.text-warning { color: #ffe07d !important; }
+.text-primary { color: #7e9aff !important; }
+.text-secondary { color: #b0b0c0 !important; }
+
+/* ============================================
+   PROGRESS BARS & BADGES
+   ============================================ */
+.progress { border-radius: 10px; background: #1a1a2e !important; }
+.badge { font-weight: 500; color: #ffffff !important; }
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); border: none; color: #ffffff !important; }
+.btn-primary:hover { box-shadow: 0 5px 20px rgba(102,126,234,0.4); color: #ffffff !important; }
+.btn-outline-primary { border-color: #667eea; color: #7e9aff !important; }
+.btn-outline-primary:hover { background: #667eea; color: #ffffff !important; }
+.btn-outline-info { border-color: #4facfe; color: #7de4ff !important; }
+.btn-outline-info:hover { background: #4facfe; color: #ffffff !important; }
+.btn-outline-success { border-color: #43e97b; color: #7dff9e !important; }
+.btn-outline-success:hover { background: #43e97b; color: #ffffff !important; }
+.btn-outline-warning { border-color: #f5af19; color: #ffe07d !important; }
+.btn-outline-warning:hover { background: #f5af19; color: #ffffff !important; }
+.btn-outline-secondary { border-color: #6c757d; color: #b0b0c0 !important; }
+.btn-outline-secondary:hover { background: #6c757d; color: #ffffff !important; }
+.btn-outline-light { border-color: #d0d0e0; color: #d0d0e0 !important; }
+.btn-outline-light:hover { background: #d0d0e0; color: #1a1a2e !important; }
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar { color: #d0d0e0 !important; }
+.navbar * { color: #d0d0e0; }
+.navbar-brand { color: #ffffff !important; }
+.navbar-brand * { color: #ffffff !important; }
+
+/* ============================================
+   DROPDOWN
+   ============================================ */
+.dropdown-menu { background: #16213e; border: 1px solid rgba(102,126,234,0.2); }
+.dropdown-item { color: #d0d0e0 !important; }
+.dropdown-item:hover { background: rgba(102,126,234,0.2); color: #ffffff !important; }
+
+/* ============================================
+   LIST GROUPS
+   ============================================ */
+.list-group-item { background: #16213e !important; color: #d0d0e0 !important; border-color: rgba(102,126,234,0.1) !important; }
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1a1a2e; }
+::-webkit-scrollbar-thumb { background: #0f3460; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #667eea; }

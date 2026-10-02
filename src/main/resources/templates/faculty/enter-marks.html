@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Enter Marks')}"></head>
+<body><nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex"><div th:replace="~{fragments/layout :: sidebar-faculty}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-edit me-2"></i>Enter Academic Marks</h2>
+            <div th:if="${param.success}" class="alert alert-success"><i class="fas fa-check-circle me-2"></i>Marks saved successfully!</div>
+            <div class="card p-4" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;">
+                <form th:action="@{/faculty/marks/save}" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label class="text-muted">Student</label>
+                            <select name="studentId" class="form-select bg-dark text-white border-secondary">
+                                <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.user.fullName + ' (' + s.registerNumber + ')'}"></option>
+                            </select></div>
+                        <div class="col-md-6 mb-3"><label class="text-muted">Subject</label>
+                            <select name="subjectId" class="form-select bg-dark text-white border-secondary">
+                                <option th:each="s : ${subjects}" th:value="${s.id}" th:text="${s.subjectName + ' (' + s.subjectCode + ')'}"></option>
+                            </select></div>
+                        <div class="col-md-4 mb-3"><label class="text-muted">Internal Marks (out of 40)</label><input type="number" name="internalMarks" class="form-control bg-dark text-white border-secondary" min="0" max="40" required></div>
+                        <div class="col-md-4 mb-3"><label class="text-muted">External Marks (out of 60)</label><input type="number" name="externalMarks" class="form-control bg-dark text-white border-secondary" min="0" max="60" required></div>
+                        <div class="col-md-4 mb-3"><label class="text-muted">Semester</label><input type="number" name="semester" class="form-control bg-dark text-white border-secondary" value="3" required></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i>Save Marks</button>
+                </form></div></div></div>
+</body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Course Videos')}"></head>
+<body>
+    <nav th:replace="~{fragments/layout :: navbar}"></nav>
+    <div class="d-flex">
+        <div th:replace="~{fragments/layout :: sidebar-student}"></div>
+        <div class="main-content">
+            <h2 class="mb-4"><i class="fas fa-play-circle me-2"></i><span th:text="${course.title}"></span> - Video Playlist</h2>
+            <div class="row">
+                <div th:each="video,iter : ${videos}" class="col-md-6 mb-4">
+                    <div class="card" style="background:#16213e;border:1px solid rgba(102,126,234,0.2);border-radius:15px;overflow:hidden;">
+                        <div class="ratio ratio-16x9">
+                            <iframe th:src="${video.youtubeUrl}" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 th:text="'#' + ${video.orderIndex} + ' - ' + ${video.title}"></h5>
+                            <p class="text-muted small" th:text="${video.description}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a th:href="@{/student/courses}" class="btn btn-outline-primary"><i class="fas fa-arrow-left me-1"></i>Back to Courses</a>
+        </div>
+    </div>
+</body>
+</html>
